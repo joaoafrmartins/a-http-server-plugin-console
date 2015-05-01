@@ -1,0 +1,27 @@
+{
+  "name": "a-http-server-plugin-console",
+  "version": "0.0.0",
+  "main": "lib",
+  "description": "A Http Server Plugin Console",
+  "keywords": [
+    "a",
+    "http",
+    "server",
+    "plugin",
+    "console"
+  ],
+  "dependencies": {
+    "morgan": "",
+    "lodash.merge": "",
+    "mkdirp": ""
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/joaoafrmartins/a-http-server-plugin-console",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaoafrmartins/a-http-server-plugin-console.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joaoafrmartins/a-http-server-plugin-console/issues"
+  }
+}
