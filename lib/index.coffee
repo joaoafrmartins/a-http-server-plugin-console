@@ -2,9 +2,9 @@ morgan = require 'morgan'
 
 merge = require 'lodash.merge'
 
-{ resolve, dirname } = require 'path'
-
 logger = require 'a-file-logger-property'
+
+{ resolve, dirname } = require 'path'
 
 { createWriteStream, writeFileSync, existsSync } = require 'fs'
 
