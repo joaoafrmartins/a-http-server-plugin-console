@@ -1,14 +1,14 @@
-{ EOL } = require 'os'
+morgan = require 'morgan'
+
+merge = require 'lodash.merge'
 
 { resolve, dirname } = require 'path'
+
+logger = require 'a-file-logger-property'
 
 { createWriteStream, writeFileSync, existsSync } = require 'fs'
 
 { sync: mkdirSync } = require 'mkdirp'
-
-morgan = require 'morgan'
-
-merge = require 'lodash.merge'
 
 module.exports = (next) ->
 
@@ -16,42 +16,24 @@ module.exports = (next) ->
 
   { format, logfile } = @config.console
 
-  logfile = resolve logfile
+  logstream = (f) ->
 
-  dir = dirname logfile
+    lf = resolve f
 
-  if not existsSync dir then  mkdirSync dir
+    dir = dirname lf
 
-  if not existsSync logfile then writeFileSync logfile, ''
+    if not existsSync dir then  mkdirSync dir
 
-  stream = createWriteStream logfile, { flags: 'a' }
+    if not existsSync lf then writeFileSync lf, ''
 
-  write = (level, args) ->
+    createWriteStream lf, { flags: 'a' }
 
-    message = [level, (new Date).toString()]
+  stream = stream: logstream logfile
 
-    args.map (arg) ->
+  logger.bind(@) stream, (err) =>
 
-      if typeof arg isnt "string"
+    if err then return next err
 
-        arg = arg?.toString() or JSON.stringify arg
+    @app.use morgan format, stream
 
-      message.push arg
-
-    message = message.join " - "
-
-    stream.write "#{message}#{EOL}"
-
-  Object.defineProperty @, "console", value:
-
-    log: (args...) -> write "log", args
-
-    info: (args...) -> write "info", args
-
-    warning: (args...) -> write "warning", args
-
-    error: (args...) -> write "error", args
-
-  @app.use morgan format, { stream: stream }
-
-  next null
+    next null

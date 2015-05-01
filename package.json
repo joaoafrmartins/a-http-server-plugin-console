@@ -13,7 +13,7 @@
   "dependencies": {
     "morgan": "",
     "lodash.merge": "",
-    "mkdirp": ""
+    "a-file-logger-property": ""
   },
   "devDependencies": {},
   "homepage": "https://github.com/joaoafrmartins/a-http-server-plugin-console",
