@@ -14,6 +14,10 @@ module.exports = (next) ->
 
   @config.console = merge require('./config'), @config?.console or {}
 
+  process.on "a-http-server:shutdown:dettach", () ->
+
+    process.emit "a-http-server:shutdown:dettached", "console"
+
   { format, logfile } = @config.console
 
   logstream = (f) ->
@@ -35,5 +39,7 @@ module.exports = (next) ->
     if err then return next err
 
     @app.use morgan format, stream
+
+    process.emit "a-http-server:shutdown:attach", "console"
 
     next null
