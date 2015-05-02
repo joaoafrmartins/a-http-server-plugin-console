@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "morgan": "",
-    "lodash.merge": "",
+    "a-http-server-config-fn": "",
     "a-file-logger-property": ""
   },
   "devDependencies": {},

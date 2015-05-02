@@ -1,8 +1,8 @@
 morgan = require 'morgan'
 
-merge = require 'lodash.merge'
-
 logger = require 'a-file-logger-property'
+
+configFn = require 'a-http-server-config-fn'
 
 { resolve, dirname } = require 'path'
 
@@ -12,7 +12,11 @@ logger = require 'a-file-logger-property'
 
 module.exports = (next) ->
 
-  @config.console = merge require('./config'), @config?.console or {}
+  configFn @config,
+
+    alias: "console"
+
+    file: "#{__dirname}/config"
 
   process.on "a-http-server:shutdown:dettach", () ->
 
