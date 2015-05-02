@@ -1,3 +1,3 @@
 module.exports =
   'format': 'combined'
-  'logfile': './log/access.log'
+  'logfile': './data/log/a-http-server.log'
