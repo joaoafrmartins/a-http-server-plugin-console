@@ -22,7 +22,7 @@ module.exports = (next) ->
 
     process.emit "a-http-server:shutdown:dettached", "console"
 
-  { format, logfile } = @config.console
+  { format, logfile } = @config.plugins.console
 
   logstream = (f) ->
 
