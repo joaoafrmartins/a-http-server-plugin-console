@@ -12,11 +12,7 @@ configFn = require 'a-http-server-config-fn'
 
 module.exports = (next) ->
 
-  configFn @config,
-
-    alias: "console"
-
-    file: "#{__dirname}/config"
+  configFn @config, "#{__dirname}/config"
 
   process.on "a-http-server:shutdown:dettach", () ->
 
